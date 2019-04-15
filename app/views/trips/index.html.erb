@@ -1,0 +1,13 @@
+<h2>BIG LIST OF TRIPS</h2>
+
+<ul>
+<% @trips.each do |trip| %>
+                <li>
+                <p>DATE:<%= trip.date %></p>
+                <p>RATING:<%= trip.rating %></p>
+                <p>COST:<%= trip.cost %></p>
+                <p>PASSENGER:<%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></p>
+                <p>DRIVER:<%= link_to trip.driver.name, driver_path(trip.driver.id) %> </p>
+                </li>
+            <%end%>
+</ul>
