@@ -1,0 +1,9 @@
+<h2>BIG LIST OF DRIVERS</h2>
+    <ul>
+    <% @drivers.each do |driver|%>
+        <li>
+            <p>NAME: <%= link_to driver.name,driver_path(driver.id)%></p>
+            <p>VIN: <%= driver.vin %></p>
+        </li>
+    <%end%>
+    </ul>
