@@ -13,7 +13,6 @@ describe DriversController do
 
   describe "edit" do
     it "can get the edit page for an existing driver" do
-
       #Arrange
       driver = Driver.last
 
