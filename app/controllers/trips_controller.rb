@@ -5,6 +5,23 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find_by(id: params[:id])
+
+    unless @trip
+      head :not_found
+    end
+  end
+
+  def new
+    @trip = Trip.new
+  end
+
+  def create
+    @trip = Trip.new(trip_params)
+    successful = @trip.save
+    if successful
+      redirect_to trips_path
+    else
+      render :new, status: :bad_request
   end
 
   private
