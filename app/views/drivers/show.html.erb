@@ -6,8 +6,8 @@
                 <li>
                 <p>DATE:<%= trip.date %></p>
                 <p>RATING:<%= trip.rating %></p>
-                <p>COST:<%= trip.cost %></p>
-                <p>PASSENGER:<%= link_to trip.passenger.name, passengers_path(trip.passenger.id) %></p>
+                <p>COST: $<%='%.2f'%trip.cost %></p>
+                <p>PASSENGER:<%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></p>
                 </li>
             <%end%>
             </ul>

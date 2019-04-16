@@ -1,0 +1,12 @@
+<p>NAME:<%=@passenger.name%></p>
+<p>PHONE NUMBER:<%=@passenger.phone_num%></p>
+<ul>
+<% @passenger.trips.each do |trip|%>
+    <li>
+        <p>DATE: <%=trip.date%></p>
+        <p>RATING: <%=trip.rating%></p>
+        <p>COST: $<%='%.2f'%trip.cost %></p>
+        <p>DRIVER: <%= link_to trip.driver.name, driver_path(trip.driver.id)%></p>
+    </li>
+<%end%>
+</ul>
