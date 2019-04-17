@@ -34,7 +34,7 @@
     <%= f.label :driver_id, "Driver: "%>
     <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id]}%>
     <% else %>
-    <%= f.hidden_field :driver_id, @driver.id %>
+    <%= f.hidden_field :driver_id, :value =>  @driver.id %>
     <% end %>
 </div>
 
@@ -43,7 +43,7 @@
     <%= f.label :passenger_id, "Passenger: "%>
     <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id]  }%>
     <% else %>
-    <%= f.hidden_field :passneger_id, @passenger%>
+    <%= f.hidden_field :passenger_id, :value => @passenger.id%>
     <% end %>
 </div>
 
