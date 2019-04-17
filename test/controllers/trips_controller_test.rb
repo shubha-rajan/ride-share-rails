@@ -1,9 +1,28 @@
 require "test_helper"
 
 describe TripsController do
+  before do
+    @passenger = Passenger.create(
+      name: "Leroy Jenkins",
+      phone_num: "12312312312",
+    )
+
+    @driver = Driver.create(
+      vin: "111111111111111",
+      name: "Tomas",
+    )
+    @trip = Trip.create(
+      date: DateTime.now,
+      rating: 4,
+      cost: 400.00,
+      driver_id: Driver.first.id,
+      passenger_id: Passenger.first.id,
+    )
+  end
+
   describe "index" do
     it "can render" do
-      get tasks_path
+      get trips_path
 
       must_respond_with :ok
     end
@@ -28,27 +47,29 @@ describe TripsController do
     end
 
     it "works for a trip that exists" do
-      get book_path(@trip.id)
+      get trip_path(@trip.id)
 
       must_respond_with :ok
     end
   end
 
-  describe "new" do
-    it "retruns status code 200" do
-      get new_trip_path
-      must_respond_with :ok
-    end
-  end
+  # describe "new" do
+  #   it "retruns status code 200" do
+  #     get new_trip_path
+  #     must_respond_with :ok
+  #   end
+  # end
 
   describe "create" do
     it "creates a new trip" do
-      new_trip = { 
-        date: DateTime.now, 
-        rating: 4,
-        cost: 400.00,
-        driver_id: 1, 
-        passenger_id: 1
+      new_trip = {
+        trip: {
+          date: DateTime.now,
+          rating: 4,
+          cost: 400.00,
+          driver_id: 1,
+          passenger_id: 1,
+        },
       }
 
       expect {
@@ -61,17 +82,18 @@ describe TripsController do
 
     it "sends bad request if the trip isn't successfully made" do
       new_trip = {
-        date: ""
+        trip: {
+          date: "",
+        },
       }
 
-      expect(Trip.new(new_trip)).wont_be :valid?
+      expect(Trip.new(new_trip["trip"])).wont_be :valid?
 
       expect {
         post trips_path, params: new_trip
       }.wont_change "Trip.count"
 
       must_respond_with :bad_request
-
     end
   end
 

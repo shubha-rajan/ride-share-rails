@@ -22,6 +22,7 @@ class TripsController < ApplicationController
       redirect_to trips_path
     else
       render :new, status: :bad_request
+    end
   end
 
   private
