@@ -30,13 +30,21 @@
 </div>
 
 <div class = "field">
+    <% if !@driver %>
     <%= f.label :driver_id, "Driver: "%>
     <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id]}%>
+    <% else %>
+    <%= f.hidden_field :driver_id, @driver.id %>
+    <% end %>
 </div>
 
 <div class = "field">
+    <% if !@passenger %>
     <%= f.label :passenger_id, "Passenger: "%>
     <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id]  }%>
+    <% else %>
+    <%= f.hidden_field :passneger_id, @passenger%>
+    <% end %>
 </div>
 
 

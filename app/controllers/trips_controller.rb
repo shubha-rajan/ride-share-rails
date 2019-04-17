@@ -30,7 +30,13 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    if params[:driver_id]
+      @driver = Driver.find_by(id: params[:driver_id])
+    elsif params[:passenger_id]
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+    end
+    
+      @trip = Trip.new
   end
 
   def create
