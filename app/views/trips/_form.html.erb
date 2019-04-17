@@ -1,0 +1,48 @@
+<%= form_with model: @trip do |f|%>
+<div class= "field">
+<%= f.label :name, "Name: "%>
+<%= f.datetime_local_field(:date)%>
+</div>
+
+<div class= "field">
+    <span>Rating<span>
+    <%= f.radio_button(:rating, 1) %>
+    <%= f.label(:rating, "1") %>
+    <%= f.radio_button(:rating, 2) %>
+    <%= f.label(:rating, "2") %>
+    <%= f.radio_button(:rating, 3) %>
+    <%= f.label(:rating, "3") %>
+    <%= f.radio_button(:rating, 4) %>
+    <%= f.label(:rating, "4") %>
+    <%= f.radio_button(:rating, 5) %>
+    <%= f.label(:rating, "5") %>
+</div>
+
+
+<div class= "field">
+    <%= f.label :date, "Date: "%>
+    <%= f.datetime_local_field(:date)%>
+</div>
+
+<div class = "field">
+    <%= f.label :cost, "Cost: "%>
+    <%= f.number_field(:cost, step: 0.05) %>
+</div>
+
+<div class = "field">
+    <%= f.label :driver_id, "Driver: "%>
+    <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id]}%>
+</div>
+
+<div class = "field">
+    <%= f.label :passenger_id, "Passenger: "%>
+    <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id]  }%>
+</div>
+
+
+<div class= "submit">
+    <%= f.submit "Submit"%>
+</div>
+
+<%end%>
+</div>
