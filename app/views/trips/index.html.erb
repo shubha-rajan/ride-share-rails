@@ -1,4 +1,8 @@
+<% if @driver %>
+<h2><%=@driver.name.upcase%>'S TRIPS</h2>
+<%else%>
 <h2>BIG LIST OF TRIPS</h2>
+<%end%>
 
 <ul>
 <% @trips.each do |trip| %>

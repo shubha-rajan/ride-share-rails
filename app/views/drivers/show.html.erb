@@ -1,13 +1,4 @@
             <p>NAME: <%= @driver.name%></p>
             <p>VIN: <%= @driver.vin %></p>
-            <p>TRIPS:</p>
-            <ul>
-            <% @driver.trips.each do |trip| %>
-                <li>
-                <p>DATE:<%= trip.date %></p>
-                <p>RATING:<%= trip.rating %></p>
-                <p>COST: $<%='%.2f'%trip.cost %></p>
-                <p>PASSENGER:<%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></p>
-                </li>
-            <%end%>
-            </ul>
+            <%= link_to "See #{@driver.name}'s 
+            trips", driver_trips_path(@driver.id) %>

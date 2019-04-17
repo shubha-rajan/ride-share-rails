@@ -1,6 +1,24 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    if params[:driver_id]
+      @driver = Driver.find_by(id: params[:driver_id])
+      if @driver
+        @trips = @driver.trips
+      else
+        head :not_found
+        return
+      end
+    elsif params[:passenger_id]
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+      if @passenger
+        @trips = @passenger.trips
+      else
+        head :not_found
+        return
+      end
+    else
+      @trips = Trip.all
+    end
   end
 
   def show
