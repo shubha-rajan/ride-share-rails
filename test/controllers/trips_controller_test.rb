@@ -67,8 +67,8 @@ describe TripsController do
           date: DateTime.now,
           rating: 4,
           cost: 400.00,
-          driver_id: 1,
-          passenger_id: 1,
+          driver_id: Driver.first.id,
+          passenger_id: Passenger.last.id,
         },
       }
 
