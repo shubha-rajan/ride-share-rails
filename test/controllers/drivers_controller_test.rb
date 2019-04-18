@@ -135,6 +135,34 @@ describe DriversController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "removes the driver from the database" do
+      # Act
+      expect {
+        delete driver_path(@driver)
+      }.must_change "Driver.count", -1
+
+      # Assert
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+
+      deleted_driver = Driver.find_by(id: @driver.id)
+      expect(deleted_driver).must_be_nil
+    end
+
+    it "returns a 404 if the book does not exist" do
+      # Arrange
+      driver_id = 12345678900000
+
+      # Assumptions
+      expect(Driver.find_by(id: driver_id)).must_be_nil
+
+      # Act
+      expect {
+        delete driver_path(driver_id)
+      }.wont_change "Driver.count"
+
+      # Assert
+      must_respond_with :not_found
+    end
   end
 end
