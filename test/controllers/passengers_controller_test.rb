@@ -2,11 +2,31 @@ require "test_helper"
 
 describe PassengersController do
   describe "index" do
-    # Your tests go here
+    it "can get index" do
+      get passengers_path
+
+      must_respond_with :success
+    end
   end
 
   describe "show" do
-    # Your tests go here
+    it "returns a 404 status code if the passenger doesn't exist" do
+      # TODO come back to this
+      passenger_id = 12345
+
+      get passenger_path(passenger_id)
+
+      must_respond_with :not_found
+    end
+
+    it "works for a passenger that exists" do
+      passenger = Passenger.last
+
+      get passenger_path(passenger.id)
+
+      # Assert
+      must_respond_with :ok
+    end
   end
 
   describe "edit" do
@@ -61,11 +81,38 @@ describe PassengersController do
   end
 
   describe "new" do
-    # Your tests go here
+    it "can get the new passenger page" do
+      # Act
+      get new_passenger_path
+
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "create" do
-    # Your tests go here
+    it "can create a new passenger" do
+      # Arrange
+      passenger_hash = {
+        passenger: {
+          name: "new passenger",
+          phone_num: "0000000000",
+        },
+      }
+
+      # Act-Assert
+      expect {
+        post passengers_path, params: passenger_hash
+      }.must_change "Passenger.count", 1
+
+      new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
+
+      expect(new_passenger.name).must_equal passenger_hash[:passenger][:name]
+      expect(new_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(new_passenger.id)
+    end
   end
 
   describe "destroy" do

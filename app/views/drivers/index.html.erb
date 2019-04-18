@@ -4,6 +4,7 @@
         <li>
             <p>NAME: <%= link_to driver.name, driver_path(driver.id)%></p>
             <p>VIN: <%= driver.vin %></p>
+            <%= link_to "Edit", edit_driver_path(driver.id)%>
         </li>
     <%end%>
     </ul>

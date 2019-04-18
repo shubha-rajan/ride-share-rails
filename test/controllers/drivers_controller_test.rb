@@ -3,12 +3,30 @@ require "test_helper"
 describe DriversController do
   describe "index" do
     it "can get index" do
-      # Your code here
+      get drivers_path
+
+      must_respond_with :success
     end
   end
 
   describe "show" do
-    # Your tests go here
+    it "returns a 404 status code if the driver doesn't exist" do
+      # TODO come back to this
+      driver_id = 12345
+
+      get driver_path(driver_id)
+
+      must_respond_with :not_found
+    end
+
+    it "works for a driver that exists" do
+      driver = Driver.last
+
+      get driver_path(driver.id)
+
+      # Assert
+      must_respond_with :ok
+    end
   end
 
   describe "edit" do
@@ -64,11 +82,38 @@ describe DriversController do
   end
 
   describe "new" do
-    # Your tests go here
+    it "can get the new driver page" do
+      # Act
+      get new_driver_path
+
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "create" do
-    # Your tests go here
+    it "can create a new driver" do
+      # Arrange
+      driver_hash = {
+        driver: {
+          name: "new driver",
+          vin: "newvin000011111",
+        },
+      }
+
+      # Act-Assert
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_change "Driver.count", 1
+
+      new_driver = Driver.find_by(name: driver_hash[:driver][:name])
+
+      expect(new_driver.name).must_equal driver_hash[:driver][:name]
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
+
+      must_respond_with :redirect
+      must_redirect_to driver_path(new_driver.id)
+    end
   end
 
   describe "destroy" do
