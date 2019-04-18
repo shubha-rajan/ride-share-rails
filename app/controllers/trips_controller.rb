@@ -40,7 +40,8 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    @trip = Trip.new(Trip.generated_params.merge({ passenger_id: params[passenger_id] }))
+
     successful = @trip.save
     if successful
       redirect_to trips_path

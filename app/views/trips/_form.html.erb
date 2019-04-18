@@ -1,22 +1,5 @@
 <%= form_with model: @trip do |f|%>
-<div class= "field">
-<%= f.label :name, "Name: "%>
-<%= f.datetime_local_field(:date)%>
-</div>
 
-<div class= "field">
-    <span>Rating<span>
-    <%= f.radio_button(:rating, 1) %>
-    <%= f.label(:rating, "1") %>
-    <%= f.radio_button(:rating, 2) %>
-    <%= f.label(:rating, "2") %>
-    <%= f.radio_button(:rating, 3) %>
-    <%= f.label(:rating, "3") %>
-    <%= f.radio_button(:rating, 4) %>
-    <%= f.label(:rating, "4") %>
-    <%= f.radio_button(:rating, 5) %>
-    <%= f.label(:rating, "5") %>
-</div>
 
 
 <div class= "field">
@@ -46,6 +29,22 @@
     <%= f.hidden_field :passenger_id, :value => @passenger.id%>
     <% end %>
 </div>
+
+<% if @trip.date %>
+    <div class= "field">
+        <span>Rating<span>
+        <%= f.radio_button(:rating, 1) %>
+        <%= f.label(:rating, "1") %>
+        <%= f.radio_button(:rating, 2) %>
+        <%= f.label(:rating, "2") %>
+        <%= f.radio_button(:rating, 3) %>
+        <%= f.label(:rating, "3") %>
+        <%= f.radio_button(:rating, 4) %>
+        <%= f.label(:rating, "4") %>
+        <%= f.radio_button(:rating, 5) %>
+        <%= f.label(:rating, "5") %>
+    </div>
+<%end%>
 
 
 <div class= "submit">
