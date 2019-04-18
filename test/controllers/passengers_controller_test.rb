@@ -146,6 +146,24 @@ describe PassengersController do
       expect(deleted_passenger).must_be_nil
     end
 
+    it "sets the foreign keys in associated trips to nil" do
+      trips = @passenger.trips
+
+      #Assumption
+      trips.each do |trip|
+        expect(trip.passenger).must_equal @passenger
+      end
+
+      #Act-Assert
+      expect {
+        delete passenger_path(@passenger)
+      }.wont_change "trips.length"
+
+      trips.each do |trip|
+        trip.reload
+        expect(trip.passenger).must_equal nil
+      end
+    end
     it "returns a 404 if the book does not exist" do
       passenger_id = 12345678900000
 

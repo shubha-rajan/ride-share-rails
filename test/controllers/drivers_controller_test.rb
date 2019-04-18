@@ -154,7 +154,7 @@ describe DriversController do
 
       #Assumption
       trips.each do |trip|
-        expect(@trip.driver).must_equal @driver
+        expect(trip.driver).must_equal @driver
       end
 
       #Act-Assert
