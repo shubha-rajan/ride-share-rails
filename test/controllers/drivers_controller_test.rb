@@ -152,7 +152,6 @@ describe DriversController do
     it "sets the foreign keys in associated trips to nil" do
       trips = @driver.trips
 
-      binding.pry
       #Assumption
       trips.each do |trip|
         expect(@trip.driver).must_equal @driver
@@ -165,7 +164,6 @@ describe DriversController do
 
       trips.each do |trip|
         trip.reload
-        binding.pry
         expect(trip.driver).must_equal nil
       end
     end
