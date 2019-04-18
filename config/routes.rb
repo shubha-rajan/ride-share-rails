@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "homepages#index"
 
-  resources :trips
+  resources :trips, except: [:index]
 
   resources :drivers do
     resources :trips, only: [:index]
