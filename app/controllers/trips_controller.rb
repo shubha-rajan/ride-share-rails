@@ -35,14 +35,32 @@ class TripsController < ApplicationController
     elsif params[:passenger_id]
       @passenger = Passenger.find_by(id: params[:passenger_id])
     end
-    
-      @trip = Trip.new
+
+    @trip = Trip.new
   end
 
   def create
     @trip = Trip.new(trip_params)
     successful = @trip.save
     if successful
+      redirect_to trips_path
+    else
+      render :new, status: :bad_request
+    end
+  end
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+
+    unless @trip
+      head :not_found
+    end
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.update trip_params
       redirect_to trips_path
     else
       render :new, status: :bad_request

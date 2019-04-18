@@ -16,5 +16,7 @@
                 <p>PASSENGER:<%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></p>
                 <p>DRIVER:<%= link_to trip.driver.name, driver_path(trip.driver.id) %> </p>
                 </li>
+                <%= link_to "Edit", edit_trip_path(trip.id)%>
             <%end%>
+            
 </ul>

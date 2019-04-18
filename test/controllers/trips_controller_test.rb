@@ -64,7 +64,7 @@ describe TripsController do
     it "creates a new trip" do
       new_trip = {
         trip: {
-          date: DateTime.now,
+          date: Time.now.to_date,
           rating: nil,
           cost: 400.00,
           driver_id: Driver.first.id,
@@ -122,7 +122,7 @@ describe TripsController do
 
       trip_hash = {
         trip: {
-          date: DateTime.now,
+          date: Time.now.to_date,
           rating: 4,
           cost: 400.00,
           driver_id: Driver.last.id,
@@ -134,7 +134,7 @@ describe TripsController do
         patch trip_path(test_trip.id), params: trip_hash
       }.wont_change "Trip.count"
 
-      test_trip.reload
+      test_trip = Trip.last
 
       expect(test_trip.date).must_equal trip_hash[:trip][:date]
       expect(test_trip.rating).must_equal trip_hash[:trip][:rating]
@@ -147,13 +147,14 @@ describe TripsController do
 
       trip_hash = {
         trip: {
-          date: "",
+          driver_id: "FAKE_ID",
+          passenger_id: "FAKE_ID",
         },
       }
 
       expect(Trip.new(trip_hash["trip"])).wont_be :valid?
 
-      patch trips_path(test_trip), params: trip_hash
+      patch trip_path(test_trip.id), params: trip_hash
 
       must_respond_with :bad_request
     end
