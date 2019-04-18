@@ -40,11 +40,11 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(Trip.generated_params.merge({ passenger_id: params[passenger_id] }))
+    @trip = Trip.new(Trip.generated_params.merge({ passenger_id: params[:passenger_id] }))
 
     successful = @trip.save
     if successful
-      redirect_to trips_path
+      redirect_to @trip
     else
       render :new, status: :bad_request
     end
@@ -62,7 +62,7 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.update trip_params
-      redirect_to trips_path
+      redirect_to @trip
     else
       render :new, status: :bad_request
     end

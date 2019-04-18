@@ -8,7 +8,7 @@ describe TripsController do
     )
 
     @driver = Driver.create(
-      vin: "111111111111111",
+      vin: "12345678901234567",
       name: "Tomas",
     )
     @trip = Trip.create(
@@ -62,35 +62,23 @@ describe TripsController do
 
   describe "create" do
     it "creates a new trip" do
-      new_trip = {
-        trip: {
-          date: Time.now.to_date,
-          rating: nil,
-          cost: 400.00,
-          driver_id: Driver.first.id,
-          passenger_id: Passenger.last.id,
-        },
-      }
-
       expect {
-        post trips_path, params: new_trip
+        post passenger_trips_path(Passenger.last.id)
       }.must_change "Trip.count", +1
 
       must_respond_with :redirect
-      must_redirect_to trips_path
+      must_redirect_to trip_path(Trip.last.id)
     end
 
     it "sends bad request if the trip isn't successfully made" do
-      new_trip = {
-        trip: {
-          date: "",
-        },
-      }
-
-      expect(Trip.new(new_trip["trip"])).wont_be :valid?
+      Driver.all.each do |driver|
+        driver.availability = false
+        driver.save
+        # binding.pry
+      end
 
       expect {
-        post trips_path, params: new_trip
+        post passenger_trips_path(Passenger.last.id)
       }.wont_change "Trip.count"
 
       must_respond_with :bad_request

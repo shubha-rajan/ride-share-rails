@@ -1,9 +1,1 @@
 # # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-passenger_one:
-  name: MyString
-  phone_num: MyString
-
-passenger_two:
-  name: MyString
-  phone_num: MyString

@@ -1,9 +1,0 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-driver_one:
-  name: MyString
-  vin: MyString
-
-driver_two:
-  name: MyString
-  vin: MyString

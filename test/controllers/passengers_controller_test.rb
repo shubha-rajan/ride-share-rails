@@ -1,6 +1,24 @@
 require "test_helper"
 
 describe PassengersController do
+  before do
+    @passenger = Passenger.create(
+      name: "Leroy Jenkins",
+      phone_num: "12312312312",
+    )
+
+    @driver = Driver.create(
+      vin: "12345678901234567",
+      name: "Tomas",
+    )
+    @trip = Trip.create(
+      date: DateTime.now,
+      rating: 4,
+      cost: 400.00,
+      driver_id: Driver.first.id,
+      passenger_id: Passenger.first.id,
+    )
+  end
   describe "index" do
     it "can get index" do
       get passengers_path

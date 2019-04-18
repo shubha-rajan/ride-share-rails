@@ -1,15 +1,2 @@
 # # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  date: 2019-04-15 15:01:57
-  rating: 1
-  cost: 1.5
-  passenger: passenger_one
-  driver: driver_two
-
-two:
-  date: 2019-04-15 15:01:57
-  rating: 1
-  cost: 1.5
-  passenger: passenger_one
-  driver: driver_two
