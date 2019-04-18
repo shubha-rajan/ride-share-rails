@@ -1,4 +1,5 @@
 <p>NAME:<%=@passenger.name%></p>
 <p>PHONE NUMBER:<%=@passenger.phone_num%></p>
 <%= link_to "See #{@passenger.name}'s trips", passenger_trips_path(@passenger.id)%>
+<%= link_to "Edit", edit_passenger_path(@passenger.id)%>
 <%= link_to "Add a trip for #{@passenger.name}", passenger_trips_path(@passenger.id), method: :post %>
