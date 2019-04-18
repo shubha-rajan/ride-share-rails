@@ -47,6 +47,20 @@ end
     end
   end
 
+  def destroy
+    passenger = Passenger.find_by(id: params[:id])
+
+    unless passenger
+      head :not_found
+      return
+    end
+
+    passenger.destroy
+
+    redirect_to passengers_path
+
+  end
+
   private
 
   def passenger_params
