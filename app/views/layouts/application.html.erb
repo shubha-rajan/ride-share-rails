@@ -10,6 +10,31 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+    <h1>RideShare on Rails!</h1>
+      <nav>
+        <ul>
+          <li class = "nav-item">
+            <p>Drivers<p>
+            <ul class="nav-drop-down">
+              <li><%= link_to "List Drivers", drivers_path %></li>
+              <li><%= link_to "Add a Driver", new_driver_path %></li>
+            </ul>
+          </li>
+          <li class = "nav-item">
+            <p>Passengers<p>
+            <ul class="nav-drop-down">
+              <li><%= link_to "List Passengers", passengers_path %></li>
+              <li><%= link_to "Add a Passenger", new_passenger_path %></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
 </html>
