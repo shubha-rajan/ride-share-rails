@@ -14,6 +14,6 @@ class Driver < ApplicationRecord
   def average_rating
     ratings = self.trips.map { |trip| trip.rating }
     average_rating = (ratings.sum.to_f / ratings.length).round(2)
-    retrn average_rating
+    return average_rating
   end
 end

@@ -4,5 +4,5 @@
             <p>TOTAL EARNINGS: <%= @driver.total_earnings%></p>
             <%= link_to "See #{@driver.name}'s trips", driver_trips_path(@driver.id) %>
             <%= link_to "Edit", edit_driver_path(@driver.id)%>
-            <%= link_to "Delete", delete driver_path(@driver.id), data: {confirm: "Are you sure you want to delete this driver?"}%>
+            <%= link_to "Delete",  driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"}%>
 
