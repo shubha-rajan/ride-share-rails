@@ -4,24 +4,27 @@ class DriversController < ApplicationController
   end
 
   def new
-    if params[:driver_id]
-      @author = Author.find_by(id: params[:author_id])
-      if @author
-        @book = @author.books.new
-      else
-        head :not_found
-        return
-      end
-    else
       @driver = Driver.new
-    end
   end
 
   def create 
+    @driver = Driver.new(driver_params)
+
+    is_successful = @driver.save
+
+    if is_successful
+      redirect_to driver_path(driver.id)
+    else
+      head :not_found
+    end
   end
 
   def show
     @driver = Driver.find_by(id: params[:id])
+
+    unless @driver
+      head :not_found
+    end
   end
 
   def edit
