@@ -19,10 +19,10 @@ describe DriversController do
       must_respond_with :not_found
     end
 
-    it "works for a book that exists" do
+    it "works for a driver that exists" do
       driver = Driver.last
-      
-      get book_path(driver.id)
+
+      get driver_path(driver.id)
 
       # Assert
       must_respond_with :ok
@@ -108,8 +108,8 @@ describe DriversController do
 
       new_driver = Driver.find_by(name: driver_hash[:driver][:name])
 
-      expect(new_driver.name).must_equal driver_hash[:task][:name]
-      expect(new_driver.vin).must_equal driver_hash[:task][:vin]
+      expect(new_driver.name).must_equal driver_hash[:driver][:name]
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
 
       must_respond_with :redirect
       must_redirect_to driver_path(new_driver.id)
