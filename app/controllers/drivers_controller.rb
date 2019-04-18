@@ -3,6 +3,23 @@ class DriversController < ApplicationController
     @drivers = Driver.all
   end
 
+  def new
+    if params[:driver_id]
+      @author = Author.find_by(id: params[:author_id])
+      if @author
+        @book = @author.books.new
+      else
+        head :not_found
+        return
+      end
+    else
+      @driver = Driver.new
+    end
+  end
+
+  def create 
+  end
+
   def show
     @driver = Driver.find_by(id: params[:id])
   end

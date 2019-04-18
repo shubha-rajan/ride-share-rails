@@ -1,5 +1,6 @@
             <p>NAME: <%= @driver.name%></p>
             <p>VIN: <%= @driver.vin %></p>
             <%= link_to "See #{@driver.name}'s trips", driver_trips_path(@driver.id) %>
+            <%= link_to "Edit" edit_driver_path(@driver.id)%>
             <%= link_to "Add a trip for #{@driver.name}", new_driver_trip_path(@driver.id) %>
 
