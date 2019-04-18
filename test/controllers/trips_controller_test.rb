@@ -39,7 +39,7 @@ describe TripsController do
   describe "show" do
     it "returns a 404 status code if the trip doesn't exist" do
       # TODO come back to this
-      trip_id = 12345
+      trip_id = "FAKE_ID"
 
       get trip_path(trip_id)
 
@@ -65,7 +65,7 @@ describe TripsController do
       new_trip = {
         trip: {
           date: DateTime.now,
-          rating: 4,
+          rating: nil,
           cost: 400.00,
           driver_id: Driver.first.id,
           passenger_id: Passenger.last.id,
@@ -98,11 +98,65 @@ describe TripsController do
   end
 
   describe "edit" do
-    # Your tests go here
+    it "can get the edit page for an existing trip" do
+      #Arrange
+      trip = Trip.last
+
+      # Act
+      get edit_trip_path(trip.id)
+
+      # Assert
+      must_respond_with :success
+    end
+
+    it "responds with a 404 for a nonexistent trip" do
+      trip_id = "FAKE_ID"
+      get edit_trip_path(trip_id)
+      must_respond_with :not_found
+    end
   end
 
   describe "update" do
-    # Your tests go here
+    it "will change the attributes of an existing trip" do
+      test_trip = Trip.last
+
+      trip_hash = {
+        trip: {
+          date: DateTime.now,
+          rating: 4,
+          cost: 400.00,
+          driver_id: Driver.last.id,
+          passenger_id: Passenger.first.id,
+        },
+      }
+
+      expect {
+        patch trip_path(test_trip.id), params: trip_hash
+      }.wont_change "Trip.count"
+
+      test_trip.reload
+
+      expect(test_trip.date).must_equal trip_hash[:trip][:date]
+      expect(test_trip.rating).must_equal trip_hash[:trip][:rating]
+      expect(test_trip.cost).must_equal trip_hash[:trip][:cost]
+      expect(test_trip.driver_id).must_equal trip_hash[:trip][:driver_id]
+      expect(test_trip.passenger_id).must_equal trip_hash[:trip][:passenger_id]
+    end
+    it "sends bad request if the trip isn't successfully updated" do
+      test_trip = Trip.last
+
+      trip_hash = {
+        trip: {
+          date: "",
+        },
+      }
+
+      expect(Trip.new(trip_hash["trip"])).wont_be :valid?
+
+      patch trips_path(test_trip), params: trip_hash
+
+      must_respond_with :bad_request
+    end
   end
 
   describe "destroy" do
