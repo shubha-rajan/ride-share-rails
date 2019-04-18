@@ -30,7 +30,7 @@ describe DriversController do
   describe "show" do
     it "returns a 404 status code if the driver doesn't exist" do
       # TODO come back to this
-      driver_id = 12345
+      driver_id = Driver.last.id + 1
 
       get driver_path(driver_id)
 
@@ -149,9 +149,30 @@ describe DriversController do
       expect(deleted_driver).must_be_nil
     end
 
-    it "returns a 404 if the book does not exist" do
+    it "sets the foreign keys in associated trips to nil" do
+      trips = @driver.trips
+
+      binding.pry
+      #Assumption
+      trips.each do |trip|
+        expect(@trip.driver).must_equal @driver
+      end
+
+      #Act-Assert
+      expect {
+        delete driver_path(@driver)
+      }.wont_change "trips.length"
+
+      trips.each do |trip|
+        trip.reload
+        binding.pry
+        expect(trip.driver).must_equal nil
+      end
+    end
+
+    it "returns a 404 if the driver does not exist" do
       # Arrange
-      driver_id = 12345678900000
+      driver_id = Driver.last.id + 1
 
       # Assumptions
       expect(Driver.find_by(id: driver_id)).must_be_nil
