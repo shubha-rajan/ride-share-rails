@@ -134,6 +134,28 @@ describe PassengersController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "removes the passenger from the database" do
+      expect {
+        delete passenger_path(@passenger)
+      }.must_change "Passenger.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to passengers_path
+
+      deleted_passenger = Passenger.find_by(id: @passenger.id)
+      expect(deleted_passenger).must_be_nil
+    end
+
+    it "returns a 404 if the book does not exist" do
+      passenger_id = 12345678900000
+
+      expect(Passenger.find_by(id: passenger_id)).must_be_nil
+
+      expect {
+        delete passenger_path(passenger_id)
+      }.wont_change "Passenger.count"
+
+      must_respond_with :not_found
+    end
   end
 end

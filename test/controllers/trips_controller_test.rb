@@ -149,6 +149,34 @@ describe TripsController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "removes the trip from the database" do
+      # Act
+      expect {
+        delete trip_path(@trip)
+      }.must_change "Trip.count", -1
+
+      # Assert
+      must_respond_with :redirect
+      must_redirect_to trips_path
+
+      deleted_trip = Trip.find_by(id: @trip.id)
+      expect(deleted_trip).must_be_nil
+    end
+
+    it "returns a 404 if the book does not exist" do
+      # Arrange
+      trip_id = 12345678900000
+
+      # Assumptions
+      expect(Trip.find_by(id: trip_id)).must_be_nil
+
+      # Act
+      expect {
+        delete passenger_path(trip_id)
+      }.wont_change "Trip.count"
+
+      # Assert
+      must_respond_with :not_found
+    end
   end
 end
