@@ -3,6 +3,22 @@ class PassengersController < ApplicationController
     @passengers = Passenger.all
   end
 
+  def new
+    @passenger = Driver.new
+end
+
+def create 
+  @passenger = Passenger.new(passenger_params)
+
+  is_successful = @passenger.save
+
+  if is_successful
+    redirect_to passenger_path(@passenger.id)
+  else
+    head :not_found
+  end
+end
+
   def show
     @passenger = Passenger.find_by(id: params[:id])
     unless @passenger
