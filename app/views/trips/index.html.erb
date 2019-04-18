@@ -9,7 +9,7 @@
 <ul>
 <% @trips.each do |trip| %>
                 <li>
-                <p>ID:<%= link_to trip.id, trip_path(trip.id) %></p>
+                <p>TRIP ID:<%= link_to trip.id, trip_path(trip.id) %></p>
                 <p>DATE:<%= trip.date %></p>
                 <p>RATING:<%= trip.rating %></p>
                 <p>COST: $<%='%.2f'% ((trip.cost) /100)%></p>

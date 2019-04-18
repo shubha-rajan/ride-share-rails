@@ -1,3 +1,4 @@
+<p>TRIP ID:<%= @trip.id %></p>
 <p>DATE:<%= @trip.date %></p>
 <p>RATING:<%= @trip.rating ? @trip.rating : "This trip hasn't been rated yet!"%></p>
 <p>COST: $<%= '%.2f'% ((@trip.cost) / 100) %></p>

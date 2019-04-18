@@ -30,7 +30,6 @@
     <% end %>
 </div>
 
-<% if @trip.date %>
     <div class= "field">
         <span>Rating<span>
         <%= f.radio_button(:rating, 1) %>
@@ -44,7 +43,7 @@
         <%= f.radio_button(:rating, 5) %>
         <%= f.label(:rating, "5") %>
     </div>
-<%end%>
+
 
 
 <div class= "submit">
