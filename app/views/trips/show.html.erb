@@ -1,6 +1,6 @@
 <p>DATE:<%= @trip.date %></p>
 <p>RATING:<%= @trip.rating ? @trip.rating : "This trip hasn't been rated yet!"%></p>
-<p>COST: $<%= '%.2f'% @trip.cost %></p>
+<p>COST: $<%= '%.2f'% ((@trip.cost) / 100) %></p>
 <p>PASSENGER:<%= @trip.passenger ? (link_to @trip.passenger.name, passenger_path(@trip.passenger.id)) : "This passenger has been removed from the system." %></p>
 <p>DRIVER:<%= @trip.driver ? (link_to @trip.driver.name, driver_path(@trip.driver.id)) : "This driver has been removed from the system."%> </p>
 
