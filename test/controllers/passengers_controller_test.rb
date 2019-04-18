@@ -117,7 +117,6 @@ describe PassengersController do
           phone_num: "0000000000",
         },
       }
-
       # Act-Assert
       expect {
         post passengers_path, params: passenger_hash

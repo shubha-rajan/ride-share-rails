@@ -59,7 +59,26 @@ class DriversController < ApplicationController
     driver.destroy
 
     redirect_to drivers_path
+  end
 
+  def change_availability
+    driver = Driver.find_by(id: params[:id])
+    
+    unless driver
+      head :not_found
+      return
+    end
+
+    driver.availability = !driver.availability
+
+    if driver.availability
+      driver.availability = false
+    else
+      driver.availability = true
+    end
+
+    driver.save
+    redirect_to driver_path
   end
 
   private
