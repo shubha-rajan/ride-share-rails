@@ -29,24 +29,15 @@ class TripsController < ApplicationController
     end
   end
 
-  def new
-    if params[:driver_id]
-      @driver = Driver.find_by(id: params[:driver_id])
-    elsif params[:passenger_id]
-      @passenger = Passenger.find_by(id: params[:passenger_id])
-    end
-
-    @trip = Trip.new
-  end
-
   def create
     @trip = Trip.new(Trip.generated_params.merge({ passenger_id: params[:passenger_id] }))
 
+    @passenger = Passenger.find_by(id: params[:passenger_id])
     successful = @trip.save
     if successful
       redirect_to @trip
     else
-      render :new, status: :bad_request
+      render :template => "passengers/show", status: :bad_request
     end
   end
 
@@ -64,7 +55,7 @@ class TripsController < ApplicationController
     if @trip.update trip_params
       redirect_to @trip
     else
-      render :new, status: :bad_request
+      render :edit, status: :bad_request
     end
   end
 

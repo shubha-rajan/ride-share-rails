@@ -21,16 +21,28 @@ describe TripsController do
   end
 
   describe "index" do
-    it "can render" do
-      get trips_path
+    it "can render a passenger's trips" do
+      get passenger_trips_path(@passenger.id)
+      must_respond_with :ok
+    end
+
+    it "can render a driver's trips" do
+      get driver_trips_path(@driver.id)
+      must_respond_with :ok
+    end
+
+    it "renders passenger trips even if there are no trips" do
+      Trip.destroy_all
+
+      get passenger_trips_path(@passenger.id)
 
       must_respond_with :ok
     end
 
-    it "renders even if there are no trips" do
+    it "renders driver trips even if there are no trips" do
       Trip.destroy_all
 
-      get trips_path
+      get driver_trips_path(@driver.id)
 
       must_respond_with :ok
     end
@@ -49,13 +61,6 @@ describe TripsController do
     it "works for a trip that exists" do
       get trip_path(@trip.id)
 
-      must_respond_with :ok
-    end
-  end
-
-  describe "new" do
-    it "retruns status code 200" do
-      get new_trip_path
       must_respond_with :ok
     end
   end

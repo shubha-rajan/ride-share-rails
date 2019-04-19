@@ -2,11 +2,9 @@
     <h2><%=@driver.name.upcase%>'S TRIPS</h2>
 <% elsif @passenger%>
     <h2><%=@passenger.name.upcase%>'S TRIPS</h2>
-<%else%>
-    <h2>BIG LIST OF TRIPS</h2>
 <%end%>
 
-<ul>
+<ul class= "big-list">
 <% @trips.each do |trip| %>
                 <li>
                 <p>TRIP ID:<%= link_to trip.id, trip_path(trip.id) %></p>

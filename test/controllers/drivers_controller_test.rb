@@ -184,4 +184,19 @@ describe DriversController do
       must_respond_with :not_found
     end
   end
+
+  describe "change_availability" do
+    it "changes availability status of a driver" do
+      post change_availability_driver_path(id: @driver.id)
+
+      available_driver = Driver.find_by(availability: true)
+      expect(available_driver.availability).must_equal true
+    end
+
+    it "will redirect to the root page" do
+      post change_availability_driver_path(id: @driver.id)
+
+      must_respond_with :redirect
+    end
+  end
 end
