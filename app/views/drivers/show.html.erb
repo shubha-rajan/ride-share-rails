@@ -4,6 +4,11 @@
             <p>AVERAGE RATING: <%= @driver.average_rating%></p>
             <p>TOTAL EARNINGS: <%= '%.2f'% ((@driver.total_earnings) / 100) %></p>
             <%= link_to "See #{@driver.name}'s trips", driver_trips_path(@driver.id) %>
+            <% if @driver.availability%>
+            <%= link_to "Go offline", change_availability_driver_path(@driver.id), method: :post %>
+            <% else %>
+            <%= link_to "Go online", change_availability_driver_path(@driver.id), method: :post %>
+            <% end %>
             <%= link_to "Edit", edit_driver_path(@driver.id)%>
             <%= link_to "Delete",  driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"}%>
 

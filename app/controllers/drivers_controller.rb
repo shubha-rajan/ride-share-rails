@@ -71,12 +71,6 @@ class DriversController < ApplicationController
 
     driver.availability = !driver.availability
 
-    if driver.availability
-      driver.availability = false
-    else
-      driver.availability = true
-    end
-
     driver.save
     redirect_to driver_path
   end

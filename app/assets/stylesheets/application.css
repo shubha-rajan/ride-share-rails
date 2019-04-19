@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+ nav ul{
+    list-style-type: none;
+    padding:0px;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+ }
+
+ nav .nav-item:first-child {
+     grid-column: 3/4;
+ }
+
+ nav .nav-item:last-child {
+    grid-column: 4/4;
+}
+
+nav .nav-drop-down {
+    display:none;
+}
+
+
+.nav-item:hover * {
+    display:block;
+}
