@@ -35,7 +35,7 @@ main {
 nav {
 
      .nav-item {
-        h3:hover {
+        *:hover {
             color: nth($color-palette, 1);
         }
      }
