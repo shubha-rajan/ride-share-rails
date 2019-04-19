@@ -13,7 +13,7 @@
   </section>
 <% end %>
 
-<% if @trip.errors.messages.any? %>
+<% if @trip && @trip.errors.messages.any? %>
   <section class = "error" >
     <span> Error occured </span>
     <ul>
