@@ -2,7 +2,7 @@ class Driver < ApplicationRecord
   has_many :trips, dependent: :nullify
 
   validates :name, presence: true
-  validates :vin, presence: true, length: { is: 17 }
+  validates :vin, presence: true
 
   def total_earnings
     trips = self.trips
