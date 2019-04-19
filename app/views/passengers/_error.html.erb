@@ -1,4 +1,4 @@
-<% if @passenger.errors.message.any? %>
+<% if @passenger.errors.messages.any? %>
   <section class = "error" >
     <span> Error occured </span>
     <ul>
@@ -13,7 +13,7 @@
   </section>
 <% end %>
 
-<% if @trip.errors.message.any? %>
+<% if @trip.errors.messages.any? %>
   <section class = "error" >
     <span> Error occured </span>
     <ul>
