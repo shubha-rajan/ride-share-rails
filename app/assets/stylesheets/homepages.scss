@@ -39,6 +39,8 @@ nav {
             color: nth($color-palette, 1);
         }
      }
+
+
      .nav-drop-down {
         display:none;
         background-color: rgba( nth($color-palette, 1), .9);
@@ -52,9 +54,9 @@ nav {
 
         li:hover {
             a {
-                color: nth($color-palette, 1);
+                color: nth($color-palette, 5);
             }
-            background-color: nth($color-palette, 4);
+            
         }
 
 

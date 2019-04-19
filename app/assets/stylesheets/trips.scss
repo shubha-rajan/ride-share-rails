@@ -6,3 +6,32 @@
 $color-palette: #D4F2DB #CEF7A0 #BA9790 #914D76 #69353F;
 $header-font-stack: 'Arvo', serif;
 $main-font-stack: 'Dosis', sans-serif;
+$list-background-colors:  #CEF7A0 #D4F2DB;
+
+.big-list {
+    @for $i from 1 through length($list-background-colors) {
+        li:nth-child(#{length($list-background-colors)}n+#{$i}) {
+            background: nth($list-background-colors, $i % (length($list-background-colors)+1));
+        }
+    }
+
+    li:first-child:first-of-type {
+        position: absolute;
+        width: 80%;
+        color: nth($color-palette, 1);
+        background-color: nth($color-palette, 5);
+
+    }
+
+    :nth-child(2) *{
+        margin-top: 3em;
+    }
+    li {
+        display:grid;
+        grid-template-columns: repeat(5, 1fr);
+        * {
+            display: inline-block;
+            margin: 10px auto;
+        }
+    }
+}
