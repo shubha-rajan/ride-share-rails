@@ -12,13 +12,18 @@
  *
  *= require_tree .
  *= require_self
- */a {
+ */
+ a {
      text-decoration: none;
  }
 
- nav ul{
+ul {
+    list-style-type: none;
     list-style-type: none;
     padding:0px;
+}
+
+ nav ul{
     display:grid;
     grid-template-columns: repeat(4, 1fr)
  }
@@ -30,11 +35,13 @@
  nav .nav-item:nth-child(2) {
      padding-top:10px;
      grid-column: 3/4;
+     text-align: justify;
  }
 
  nav .nav-item:last-child {
     padding-top:10px;
     grid-column: 4/5;
+    text-align: justify;
 }
 
 nav .nav-drop-down {

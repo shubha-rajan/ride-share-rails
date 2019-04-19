@@ -5,14 +5,30 @@
 <%end%>
 
 <ul class= "big-list">
+<li>
+    <span>TRIP ID:</span>
+    <span>DATE:</span>
+    <span>RATING:</span>
+    <span>COST:</span>
+    <%unless params[:passenger_id]%>
+        <span>PASSENGER:</span>
+    <%end%>
+    <% unless params[:driver_id]%>
+        <span>DRIVER:</span>
+    <%end%>
+</li>
 <% @trips.each do |trip| %>
                 <li>
-                <p>TRIP ID:<%= link_to trip.id, trip_path(trip.id) %></p>
-                <p>DATE:<%= trip.date %></p>
-                <p>RATING:<%= trip.rating %></p>
-                <p>COST: $<%='%.2f'% ((trip.cost) /100)%></p>
-                <p>PASSENGER:<%= trip.passenger ? (link_to trip.passenger.name, passenger_path(trip.passenger.id)) : "This passenger has been removed from the system." %></p>
-                <p>DRIVER:<%= trip.driver ? (link_to trip.driver.name, driver_path(trip.driver.id)) : "This driver has been removed from the system."%> </p>
+                <span><%= link_to trip.id, trip_path(trip.id) %></span>
+                <span><%= trip.date %></span>
+                <span><%= trip.rating ? trip.rating : "This trip hasn't been rated yet!"%></span>
+                <span>$<%='%.2f'% ((trip.cost) /100)%></span>
+                <% unless params[:passenger_id]%>
+                    <span><%= trip.passenger ? (link_to trip.passenger.name, passenger_path(trip.passenger.id)) : "This passenger has been removed from the system." %></span>
+                <%end%>
+                <% unless params[:driver_id]%>
+                    <span><%= trip.driver ? (link_to trip.driver.name, driver_path(trip.driver.id)) : "This driver has been removed from the system."%></span>
+                <%end%>
                 </li>
             <%end%>
             

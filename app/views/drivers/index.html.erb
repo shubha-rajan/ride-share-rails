@@ -1,11 +1,16 @@
 <h2>BIG LIST OF DRIVERS</h2>
-<%=link_to "Add a driver", new_driver_path%>
+<%=link_to "CREATE NEW DRIVER", new_driver_path%>
     <ul class= "big-list">
+    <li>
+    <span>IMAGE:</span>
+    <span>NAME:</span>
+    <span>AVERAGE RATING:</span>
+    </li>
     <% @drivers.each do |driver|%>
         <li>
         <%= image_tag 'http://placekitten.com/100/100', alt: driver.name, class: "thumbnail"  %>
-            <p>NAME: <%= link_to driver.name, driver_path(driver.id)%></p>
-            <p>AVERAGE RATING: <%= driver.average_rating%></p>
+            <%= link_to driver.name, driver_path(driver.id)%>
+            <span><%= driver.average_rating%></span>
             <%= link_to "Edit", edit_driver_path(driver.id)%>
             <%= link_to "Delete",  driver_path(driver.id), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"}%>
         </li>

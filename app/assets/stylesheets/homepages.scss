@@ -6,3 +6,71 @@
 $color-palette: #D4F2DB #CEF7A0 #BA9790 #914D76 #69353F;
 $header-font-stack: 'Arvo', serif;
 $main-font-stack: 'Dosis', sans-serif;
+
+header {
+    background-color: nth($color-palette, 4);
+    padding-top: 1px;
+    h1, h2, h3, a{
+        font-family: 'Arvo', serif;
+        color: nth($color-palette, 2);
+    }
+}
+body {
+    font-family: $main-font-stack;
+    margin:0;
+    text-align:center;
+}
+
+main {
+    a {
+        color:nth($color-palette, 5)
+    }
+    a:hover{
+        color:nth($color-palette, 4)
+    }
+    
+}
+
+
+nav {
+
+     .nav-item {
+        h3:hover {
+            color: nth($color-palette, 1);
+        }
+     }
+     .nav-drop-down {
+        display:none;
+        background-color: rgba( nth($color-palette, 1), .9);
+        
+        li {
+            padding:20px;
+            a {
+                color:nth($color-palette, 4);
+            }  
+        }
+
+        li:hover {
+            a {
+                color: nth($color-palette, 1);
+            }
+            background-color: nth($color-palette, 4);
+        }
+
+
+     .nav-item:hover .nav-drop-down {
+        display: block;
+        position: absolute;
+        z-index: 1;
+     }
+     }
+
+     
+}
+
+
+
+
+
+
+
