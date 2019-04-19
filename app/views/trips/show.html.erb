@@ -5,5 +5,26 @@
 <p>PASSENGER:<%= @trip.passenger ? (link_to @trip.passenger.name, passenger_path(@trip.passenger.id)) : "This passenger has been removed from the system." %></p>
 <p>DRIVER:<%= @trip.driver ? (link_to @trip.driver.name, driver_path(@trip.driver.id)) : "This driver has been removed from the system."%> </p>
 
+
+<% if !@trip.rating%>
+    <h3>Rate this trip!</h3>
+    <%= form_with model:@trip, url: add_rating_trip_path, method: :post do |f|%>
+        <div class= "field">
+            <span>Rating<span>
+            <%= f.radio_button(:rating, 1) %>
+            <%= f.label(:rating, "1") %>
+            <%= f.radio_button(:rating, 2) %>
+            <%= f.label(:rating, "2") %>
+            <%= f.radio_button(:rating, 3) %>
+            <%= f.label(:rating, "3") %>
+            <%= f.radio_button(:rating, 4) %>
+            <%= f.label(:rating, "4") %>
+            <%= f.radio_button(:rating, 5) %>
+            <%= f.label(:rating, "5") %>
+        </div>
+            <%= f.submit "Add Rating"%>
+    <%end%>
+<%end%>
+
 <%= link_to "Edit", edit_trip_path(@trip.id)%>
 <%= link_to "Delete",  trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure you want to delete this trip?"}%>

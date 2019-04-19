@@ -72,6 +72,24 @@ class TripsController < ApplicationController
     redirect_to trips_path
   end
 
+  def add_rating
+    @trip = Trip.find_by(id: params[:id])
+
+    unless @trip
+      head :not_found
+      return
+    end
+
+    @trip.rating = trip_params[:rating]
+
+    successful = @trip.save
+    if successful
+      redirect_to @trip
+    else
+      render :show, status: :bad_request
+    end
+  end
+
   private
 
   def trip_params

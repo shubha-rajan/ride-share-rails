@@ -168,7 +168,7 @@ describe TripsController do
       expect(deleted_trip).must_be_nil
     end
 
-    it "returns a 404 if the book does not exist" do
+    it "returns a 404 if the trip does not exist" do
       # Arrange
       trip_id = 12345678900000
 
@@ -179,6 +179,43 @@ describe TripsController do
       expect {
         delete passenger_path(trip_id)
       }.wont_change "Trip.count"
+
+      # Assert
+      must_respond_with :not_found
+    end
+  end
+
+  describe "add_rating" do
+    before do
+      @test_params = {
+        trip: {
+          rating: 4,
+        },
+      }
+    end
+
+    it "changes the rating of an unrated trip" do
+      #Arrange
+      @trip.rating = nil
+      @trip.save
+
+      #Act
+      post add_rating_trip_path(@trip.id), params: @test_params
+      @trip.reload
+
+      #Assert
+      expect(@trip.rating).must_equal @test_params[:trip][:rating]
+    end
+
+    it "returns a 404 if the trip does not exist" do
+      # Arrange
+      trip_id = 12345678900000
+
+      # Assumptions
+      expect(Trip.find_by(id: trip_id)).must_be_nil
+
+      # Act
+      post add_rating_trip_path(trip_id), params: @test_params
 
       # Assert
       must_respond_with :not_found
