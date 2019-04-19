@@ -8,11 +8,11 @@ $header-font-stack: 'Arvo', serif;
 $main-font-stack: 'Dosis', sans-serif;
 
 header {
-    background-color: nth($color-palette, 4);
+    background-color: lighten(nth($color-palette, 4), 25%);
     padding-top: 1px;
     h1, h2, h3, a{
         font-family: 'Arvo', serif;
-        color: nth($color-palette, 2);
+        color: nth($color-palette, 5);
     }
 }
 body {
@@ -68,6 +68,12 @@ nav {
      }
 
      
+}
+
+.driverpig {
+    display:block;
+    margin:auto;
+    height:400px;
 }
 
 
