@@ -3,7 +3,7 @@
 <p>NAME: <%= @driver.name%></p>
 <p>VIN: <%= @driver.vin %></p>
 <p>AVERAGE RATING: <%= @driver.average_rating ? @driver.average_rating : "No ratings for this driver!"%></p>
-<p>TOTAL EARNINGS: <%= '%.2f'% ((@driver.total_earnings) / 100) %></p>
+<p>TOTAL EARNINGS: $<%= '%.2f'% ((@driver.total_earnings) / 100) %></p>
 <%= link_to "See #{@driver.name}'s trips", driver_trips_path(@driver.id) %>
 <% if @driver.availability%>
 <%= link_to "Go offline", change_availability_driver_path(@driver.id), method: :post %>
