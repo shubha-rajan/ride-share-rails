@@ -8,7 +8,7 @@
     </li>
 <%@passengers.each do |passenger| %>
     <li>
-        <%= image_tag 'http://placekitten.com/100/100', alt: passenger.name, class: "thumbnail"  %>
+        <%= image_tag 'http://lorempixel.com/100/100/animals/6/', alt: passenger.name, class: "thumbnail"  %>
         <%=link_to passenger.name, passenger_path(passenger.id)%>
         <span><%= passenger.phone_num%></span>
         <%= link_to "Edit", edit_passenger_path(passenger.id)%>

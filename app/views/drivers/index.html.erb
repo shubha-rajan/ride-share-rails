@@ -8,7 +8,7 @@
     </li>
     <% @drivers.each do |driver|%>
         <li>
-        <%= image_tag 'http://placekitten.com/100/100', alt: driver.name, class: "thumbnail"  %>
+        <%= image_tag 'http://lorempixel.com/100/100/animals/6/', alt: driver.name, class: "thumbnail"  %>
             <%= link_to driver.name, driver_path(driver.id)%>
             <span><%= driver.average_rating%></span>
             <%= link_to "Edit", edit_driver_path(driver.id)%>
