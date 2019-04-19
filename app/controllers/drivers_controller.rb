@@ -4,10 +4,10 @@ class DriversController < ApplicationController
   end
 
   def new
-      @driver = Driver.new
+    @driver = Driver.new
   end
 
-  def create 
+  def create
     @driver = Driver.new(driver_params)
 
     is_successful = @driver.save
@@ -15,7 +15,7 @@ class DriversController < ApplicationController
     if is_successful
       redirect_to driver_path(@driver.id)
     else
-      head :not_found
+      render :new
     end
   end
 
@@ -41,7 +41,7 @@ class DriversController < ApplicationController
       if @driver.update driver_params
         redirect_to driver_path(@driver)
       else
-        render new
+        render :edit
       end
     else
       head :not_found
@@ -63,7 +63,7 @@ class DriversController < ApplicationController
 
   def change_availability
     driver = Driver.find_by(id: params[:id])
-    
+
     unless driver
       head :not_found
       return

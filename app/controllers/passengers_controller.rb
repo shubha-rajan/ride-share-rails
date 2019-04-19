@@ -5,19 +5,19 @@ class PassengersController < ApplicationController
 
   def new
     @passenger = Driver.new
-end
-
-def create 
-  @passenger = Passenger.new(passenger_params)
-
-  is_successful = @passenger.save
-
-  if is_successful
-    redirect_to passenger_path(@passenger.id)
-  else
-    head :not_found
   end
-end
+
+  def create
+    @passenger = Passenger.new(passenger_params)
+
+    is_successful = @passenger.save
+
+    if is_successful
+      redirect_to passenger_path(@passenger.id)
+    else
+      render :new
+    end
+  end
 
   def show
     @passenger = Passenger.find_by(id: params[:id])
@@ -40,7 +40,7 @@ end
       if @passenger.update passenger_params
         redirect_to passenger_path(@passenger)
       else
-        render new
+        render :edit
       end
     else
       head :not_found
@@ -58,7 +58,6 @@ end
     passenger.destroy
 
     redirect_to passengers_path
-
   end
 
   private
