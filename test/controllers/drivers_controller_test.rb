@@ -189,8 +189,8 @@ describe DriversController do
     it "changes availability status of a driver" do
       post change_availability_driver_path(id: @driver.id)
 
-      available_driver = Driver.find_by(availability: true)
-      expect(available_driver.availability).must_equal true
+      available_driver = Driver.find_by(availability: false)
+      expect(available_driver.availability).must_equal false
     end
 
     it "will redirect to the root page" do
