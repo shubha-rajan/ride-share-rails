@@ -200,7 +200,7 @@ describe TripsController do
       @trip.save
 
       #Act
-      post add_rating_trip_path(@trip.id), params: @test_params
+      patch add_rating_trip_path(@trip.id), params: @test_params
       @trip.reload
 
       #Assert
@@ -215,7 +215,7 @@ describe TripsController do
       expect(Trip.find_by(id: trip_id)).must_be_nil
 
       # Act
-      post add_rating_trip_path(trip_id), params: @test_params
+      patch add_rating_trip_path(trip_id), params: @test_params
 
       # Assert
       must_respond_with :not_found

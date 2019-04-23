@@ -8,7 +8,7 @@
 
 <% if !@trip.rating%>
     <h3>Rate this trip!</h3>
-    <%= form_with model:@trip, url: add_rating_trip_path, method: :post do |f|%>
+    <%= form_with model:@trip, url: add_rating_trip_path, method: :patch do |f|%>
         <div class= "field">
             <span>Rating<span>
             <%= f.radio_button(:rating, 1) %>
