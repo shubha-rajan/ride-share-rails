@@ -3,7 +3,7 @@
 <p>NAME:<%=@passenger.name%></p>
 <p>PHONE NUMBER:<%=@passenger.phone_num%></p>
 <p>TOTAL SPENT: <%= '%.2f'% ((@passenger.total_spent)/100)%></p>
-<%= link_to "See #{@passenger.name}'s trips", passenger_trips_path(@passenger.id)%>
-<%= link_to "Request a trip for #{@passenger.name}", passenger_trips_path(@passenger.id), method: :post %>
-<%= link_to "Edit", edit_passenger_path(@passenger.id)%>
+<%= link_to "See #{@passenger.name}'s trips", passenger_trips_path(@passenger.id)%> | 
+<%= link_to "Request a trip for #{@passenger.name}", passenger_trips_path(@passenger.id), method: :post %> | 
+<%= link_to "Edit", edit_passenger_path(@passenger.id)%> | 
 <%= link_to "Delete",  passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure you want to delete this passenger?"}%>
